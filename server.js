@@ -93,6 +93,13 @@ router.post('/signin', function(req, res) {
     };
 });
 
+router.get('/movies', function (req, res) {
+    res.set({
+
+    })
+    res.status(200).send('GET Movies')
+});
+
 app.use('/', router);
 app.listen(process.env.PORT || 8080);
 
