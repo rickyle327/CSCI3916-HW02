@@ -95,9 +95,38 @@ router.post('/signin', function(req, res) {
 
 router.get('/movies', function (req, res) {
     res.set({
-
+        'header': req.rawHeaders,
+        'query': JSON.stringify(req.query),
+        'env': process.env.UNIQUE_KEY
     })
-    res.status(200).send('GET Movies')
+    res.status(200).send('GET Movies');
+});
+
+router.post('/movies', function (req, res) {
+    res.set({
+        'header': req.rawHeaders,
+        'query': JSON.stringify(req.query),
+        'env': process.env.UNIQUE_KEY
+    })
+    res.status(200).send('Movie saved');
+});
+
+router.put('/movies', authController.isAuthenticated, function (req, res) {
+    res.set({
+        'header': req.rawHeaders,
+        'query': JSON.stringify(req.query),
+        'env': process.env.UNIQUE_KEY
+    })
+    res.status(200).send('Movie updated');
+});
+
+router.delete('/movies', authController.isAuthenticated, function (req, res) {
+    res.set({
+        'header': req.rawHeaders,
+        'query': JSON.stringify(req.query),
+        'env': process.env.UNIQUE_KEY
+    })
+    res.status(200).send('Movie deleted');
 });
 
 app.use('/', router);
