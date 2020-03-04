@@ -111,7 +111,7 @@ router.post('/movies', function (req, res) {
     res.status(200).send('Movie saved');
 });
 
-router.put('/movies', authController.isAuthenticated, function (req, res) {
+router.put('/movies', authJwtController.isAuthenticated, function (req, res) {
     res.set({
         'header': req.rawHeaders,
         'query': JSON.stringify(req.query),
